@@ -1,6 +1,7 @@
 package com.liangyang.materialdesign;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -62,28 +63,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mLayoutInflater.inflate(R.layout.lv_item, parent, false);
-        MyViewHolder myViewHolder = new MyViewHolder(view);
-//
-//        //设置点击监听事件
-//        /*
-//        holder.cardView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                int position = holder.getAdapterPosition();
-//                Fruit fruit = mFruitList.get(position);
-//                Intent intent = new Intent(mContext, FruitActivity.class);
-//                intent.putExtra(FruitActivity.FRUIT_NAME, fruit.getName());
-//                intent.putExtra(FruitActivity.FRUIT_IMAGE_ID, fruit.getImageId());
-//                mContext.startActivity(intent);
-//            }
-//        });
-//         */
-////        myViewHolder.mCardView.setOnClickListener(new View.OnClickListener() {
-////            @Override
-////            public void onClick(View v) {
-////                Toast.makeText(mContext, "你点击了图片", Toast.LENGTH_SHORT).show();
-////            }
-////        });
+        final MyViewHolder myViewHolder = new MyViewHolder(view);
+        //设置点击监听事件
+        myViewHolder.mCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = myViewHolder.getAdapterPosition();
+                DataInfo dataInfo = dataInfoList.get(position);
+                Intent intent = new Intent(mContext, ContentActivity.class);
+                intent.putExtra("name", dataInfo.getName());
+                intent.putExtra("image_id", dataInfo.getImageId());
+                intent.putExtra("content", dataInfo.getContent());
+                mContext.startActivity(intent);
+            }
+        });
         return myViewHolder;
     }
 

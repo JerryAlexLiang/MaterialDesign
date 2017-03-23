@@ -7,18 +7,14 @@ package com.liangyang.materialdesign;
  */
 public class DataInfo {
 
-    private int number;
     private String name;
     private int imageId;
+    private String content;
 
-    public DataInfo(int number, String name, int imageId) {
-        this.number = number;
+    public DataInfo(String name, int imageId, String content) {
         this.name = name;
         this.imageId = imageId;
-    }
-
-    public int getNumber() {
-        return number;
+        this.content = content;
     }
 
     public String getName() {
@@ -27,5 +23,9 @@ public class DataInfo {
 
     public int getImageId() {
         return imageId;
+    }
+
+    public String getContent() {
+        return content;
     }
 }
