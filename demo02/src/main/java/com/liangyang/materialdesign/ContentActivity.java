@@ -83,30 +83,6 @@ public class ContentActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.float_action_btn:
-                /*
-                //FloatingActionButton的点击监听事件
-                Snackbar.make(view, "切换模式", Snackbar.LENGTH_LONG)
-                        .setAction("确定", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                if (isList) {
-                                    isList = false;
-                                    //切换网格模式
-                                    //创建布局管理器  GridLayoutManager(垂直方向滚动，参数二表示列数，按列排序)
-                                    GridLayoutManager gridLayoutManager = new GridLayoutManager(MainActivity.this, 2);
-                                    recyclerView.setLayoutManager(gridLayoutManager);
-                                } else {
-                                    isList = true;
-                                    //切换列表模式
-                                    //创建布局管理器
-                                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(MainActivity.this);
-                                    recyclerView.setLayoutManager(linearLayoutManager);
-                                }
-                                Toast.makeText(MainActivity.this, "Mode Changed", Toast.LENGTH_SHORT).show();
-                            }
-                        })
-                        .show();
-                 */
                 //FloatingActionButton的点击监听事件
                 Snackbar.make(v, "改变字体颜色", Snackbar.LENGTH_LONG)
                         .setAction("确定", new View.OnClickListener() {
