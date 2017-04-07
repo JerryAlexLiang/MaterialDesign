@@ -1,5 +1,6 @@
 package com.liangyang.materialdesign;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -7,12 +8,14 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -79,6 +82,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         toolbar.setLogo(R.mipmap.ic_launcher);
         setSupportActionBar(toolbar);//将Toolbar设置为Actionbar
 
+        //初始化dialog
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setCancelable(false);
+        builder.setIcon(R.drawable.def_head);
+        builder.setTitle("提示");
+        builder.setView(R.layout.dialog_view_item);
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        builder.setPositiveButton("查看", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(MainActivity.this, "你点击了查看按钮", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        builder.create().show();
+
         //初始化抽屉控件
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -123,11 +147,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         recyclerView.setAdapter(adapter);
 
         mSwipeRefresh = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
-        //刷新条颜色
-        mSwipeRefresh.setColorSchemeResources(R.color.colorAccent);
+        //刷新条颜色,setColorSchemeResources(int… args)：设置刷新时圆圈的颜色变化，为int数组
+        mSwipeRefresh.setColorSchemeResources(android.R.color.holo_blue_light,
+                android.R.color.holo_red_light, android.R.color.holo_orange_light);
+        //setSize(int size)：设置刷新时圆圈的大小，有DEFAULT和LARGE两个值，默认是DEFAULT
+        mSwipeRefresh.setSize(SwipeRefreshLayout.LARGE);
+        //setOnRefreshListener(OnRefreshListener listener)：设置刷新时回调监听事件，刷新时调用
         mSwipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            /**
+             * 当刷新的时候进行回调
+             */
             @Override
             public void onRefresh() {
+                //在这里执行操作的更新等操作
                 refreshData();
             }
         });
@@ -157,6 +189,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         initData();
                         //刷新适配器
                         adapter.notifyDataSetChanged();
+                        //setRefreshing(boolean refreshing)：设置是否继续正在刷新
                         mSwipeRefresh.setRefreshing(false);
                     }
                 });
@@ -296,5 +329,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             default:
         }
         return true;
+    }
+
+    /**
+     * 返回键退出应用(连按两次)
+     *
+     * @param keyCode
+     * @param event
+     * @return
+     */
+    private long waitTime = 2000;
+    private long touchTime = 0;
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (event.getAction() == KeyEvent.ACTION_DOWN && KeyEvent.KEYCODE_BACK == keyCode) {
+            long currentTime = System.currentTimeMillis();
+            if ((currentTime - touchTime) >= waitTime) {
+                Toast.makeText(MainActivity.this, "再按一次退出应用", Toast.LENGTH_SHORT).show();
+                touchTime = currentTime;
+            } else {
+                finish();
+                System.exit(0);
+            }
+            return true;
+        } else if (KeyEvent.KEYCODE_HOME == keyCode) {
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

@@ -52,6 +52,15 @@
             android:layout_margin="16dp"
             android:src="@drawable/ic_done"/>
 
+
+        <!--<RelativeLayout-->
+            <!--android:layout_width="200dp"-->
+            <!--android:layout_height="100dp"-->
+            <!--android:layout_gravity="center"-->
+            <!--&gt;-->
+            <!---->
+        <!--</RelativeLayout>-->
+
     </android.support.design.widget.CoordinatorLayout>
 
     <android.support.design.widget.NavigationView

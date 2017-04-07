@@ -2,14 +2,24 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.liangyang.materialdesign">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/app_log"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,12 +28,15 @@
             </intent-filter>
         </activity>
 
-        <!-- 给状态栏设置颜色  思路是：1.先设置状态栏透明属性；2.给根布局加上一个和状态栏一样大小的矩形View（色块），添加到顶上；
+        <!--
+             给状态栏设置颜色  思路是：1.先设置状态栏透明属性；2.给根布局加上一个和状态栏一样大小的矩形View（色块），添加到顶上；
              3.然后设置根布局的 FitsSystemWindows 属性为 true,此时根布局会延伸到状态栏，处在状态栏位置的就是之前添加的色块，
-             这样就给状态栏设置上颜色了-->
-        <activity android:name=".ContentActivity"
-            android:theme="@style/ContentActivityTheme">
-        </activity>
+             这样就给状态栏设置上颜色了
+        -->
+        <activity
+            android:name=".ContentActivity"
+            android:theme="@style/ContentActivityTheme"/>
+        <activity android:name=".MainActivity"/>
     </application>
 
 </manifest>
