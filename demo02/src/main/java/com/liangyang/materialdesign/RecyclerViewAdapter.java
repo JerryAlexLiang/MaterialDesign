@@ -16,8 +16,8 @@ import java.util.List;
 
 /**
  * 创建日期：2017/3/22 on 下午4:56
- * 描述:1.先创建ViewHolder(继承RecyclerView.ViewHolder)
- * 2.创建适配器(继承RecyclerView.Adapter<RecyclerView.ViewHolder>)
+ * 描述:1.先创建MyViewHolder(继承RecyclerView.ViewHolder)
+ * 2.创建适配器(继承RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>)
  * 3.注意：RecyclerView没有提供setOnItemClickListener这个回调，自己在Adapter中添加这个回调接口(可选)
  * 作者:yangliang
  */

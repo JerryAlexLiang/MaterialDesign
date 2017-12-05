@@ -89,12 +89,11 @@ public class ContentActivity extends AppCompatActivity implements View.OnClickLi
                             @Override
                             public void onClick(View v) {
                                 if (isBlack) {
-                                    isBlack = false;
-                                    contentTextView.setTextColor(Color.BLACK);
-
-                                } else {
-                                    isBlack = true;
                                     contentTextView.setTextColor(Color.GRAY);
+                                    isBlack = false;
+                                } else {
+                                    contentTextView.setTextColor(Color.BLACK);
+                                    isBlack = true;
                                 }
 
                             }
