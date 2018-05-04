@@ -12,6 +12,8 @@
         android:layout_height="250dp"
         android:fitsSystemWindows="true">
 
+        <!--app:layout_scrollFlags="scroll|exitUntilCollapsed"
+        去掉这一行代码则图不会滑动-->
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
