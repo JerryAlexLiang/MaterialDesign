@@ -3,9 +3,8 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
-        <option name="distributionType" value="LOCAL" />
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleHome" value="$APPLICATION_HOME_DIR$/gradle/gradle-2.14.1" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
@@ -13,6 +12,8 @@
             <option value="$PROJECT_DIR$/circularReveal" />
             <option value="$PROJECT_DIR$/demo01" />
             <option value="$PROJECT_DIR$/demo02" />
+            <option value="$PROJECT_DIR$/demo03" />
+            <option value="$PROJECT_DIR$/transparencynavigationactionbar" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
