@@ -8,7 +8,9 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.FrameLayout;
 
 public class OneActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -21,19 +23,35 @@ public class OneActivity extends AppCompatActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_one);
-        //沉浸式状态栏的方法
-        if (Build.VERSION.SDK_INT >= 21) {
-            View decorView = getWindow().getDecorView();
-            int option = View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
-            decorView.setSystemUiVisibility(option);
-            getWindow().setNavigationBarColor(Color.TRANSPARENT);
-            getWindow().setStatusBarColor(Color.TRANSPARENT);
-        }
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+//        //沉浸式状态栏的方法
+//        if (Build.VERSION.SDK_INT >= 21) {
+//            //Build.VERSION_CODES.LOLLIPOP//全透明状态栏(不带阴影)
+//            View decorView = getWindow().getDecorView();
+//            int option = View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+//                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+//                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
+//            decorView.setSystemUiVisibility(option);
+//            getWindow().setNavigationBarColor(Color.TRANSPARENT);
+//            getWindow().setStatusBarColor(Color.TRANSPARENT);
+//        }else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+//            //半透明状态栏(带阴影)
+//            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//        }
+////        ActionBar actionBar = getSupportActionBar();
+////        actionBar.hide();
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            //全透明状态栏(不带阴影)
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            //半透明状态栏(带阴影)
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
+
+        FrameLayout actionBarLayout = (FrameLayout) findViewById(R.id.toolbar);
+        actionBarLayout.setBackgroundColor(Color.TRANSPARENT);
         Button jumpTwoActivityBtn = (Button) findViewById(R.id.btn_jump_two_activity);
         jumpTwoActivityBtn.setOnClickListener(this);
     }

@@ -7,16 +7,21 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/layout_toolbar_default" />
+
     <Button
         android:id="@+id/btn_one"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="透明标题栏图片"/>
+        android:layout_marginTop="10dp"
+        android:text="透明标题栏图片" />
 
     <Button
         android:id="@+id/btn_two"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="透明标题栏颜色"/>
+        android:text="透明标题栏颜色" />
 
 </LinearLayout>
